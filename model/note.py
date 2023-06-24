@@ -4,10 +4,10 @@ import datetime
 class Note:
     count = 1
 
-    def __init__(self, header: str, body: str, note_date: datetime):
+    def __init__(self, header: str, body: str):
         self.header = header
         self.body = body
-        self.note_date = note_date
+        self.note_date = datetime.datetime.now()
         self.uid = Note.count
         Note.count += 1
 
