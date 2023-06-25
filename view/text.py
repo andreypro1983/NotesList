@@ -13,9 +13,18 @@ class Text:
         self.input_message = 'Выберите пункт меню: '
         self.input_note = ['Введите заголовок заметки: ',
                            'Введите тело заметки: ']
-        self.add_note_success = '\n Заметка успешно добавлена'
-        self.exit_message = '\n До свидания!!!'
-        self.empty_notes_list = '\n Список заметок пуст'
+        self.input_uid = 'Введите id заметки: '
+        self.add_note_successful = '\nЗаметка успешно добавлена'
+        self.exit_message = '\nДо свидания!!!'
+        self.empty_notes_list = '\nСписок заметок пуст'
+        self.show_notes_list = '\nCписок заметок:'
+        self.add_note = '\nДобавление заметки\n'
+        self.remove_note = '\nУдаление заметки\n'
+        self.input_uid_digit_error = '\nВведенное значение не является числом'
+        self.remote_note_successful = '\nЗаметка успешно удалена' 
+
+    def input_uid_find_error(self, uid: int) -> str:
+        return f'\nЗаметка с id = {(uid)} не найдена'
 
     def input_menu_error(self) -> str:
         return f'Введено недопустимое значение: выберите пункт от 1 до {len(self.textmenu)-1}'

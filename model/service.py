@@ -9,14 +9,15 @@ class Service:
     def add(self, header: str, body: str):
         new_note = note.Note(header, body)
         self.notes_list.add(new_note)
-        print(self.notes_list.show())
-        
+
+    def find(self, uid: str) -> int:
+        if self.notes_list.find(int(uid)):
+            return int(uid)
+        else:
+            return -1
 
     def show(self) -> str:
         return self.notes_list.show()
 
-
-
-
-
-
+    def remove(self, uid: int):
+        self.notes_list.remove(self.notes_list.notes[uid])

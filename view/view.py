@@ -8,7 +8,7 @@ class View:
         self.text = text
 
     def menu(self) -> int:
-        print('\n' + self.text.textmenu[0])
+        print('\n' + self.text.textmenu[0].upper())
         for i, item in enumerate(self.text.textmenu[1:], 1):
             print(f'{i:>4}. {item}')
         while True:
@@ -19,6 +19,9 @@ class View:
 
     def input_note(self) -> Tuple(str):
         return tuple([input(line) for line in self.text.input_note])
+    
+    def input_uid(self) -> str:
+        return input(self.text.input_uid)
 
     def print_message(self, txt: str):
         print(txt)

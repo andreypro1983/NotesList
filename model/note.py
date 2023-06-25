@@ -15,7 +15,7 @@ class Note:
         return self.uid
 
     def for_print(self) -> str:
-        return f'{self.uid} {self.header} {self.body} {self.note_date}'
+        return f'id: {self.uid} Заголовок: {self.header} Тело заметки: {self.body} Дата создания/изменения: {self.note_date}'
 
    # def __str__(self) -> str:
     #     return f'{self.uid} {self.header} {self.body} {self.note_date}'

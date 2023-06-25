@@ -15,3 +15,15 @@ class NotesList:
             for value in self.notes.values():
                 string += f'{value.for_print()} \n'
         return string
+    
+    def find(self, uid: int) -> bool:
+        if uid in self.notes:
+            return True
+        else:
+            return False
+
+    
+    def remove(self, remove_note: note.Note):
+        if remove_note.get_uid() in self.notes:
+            del self.notes[remove_note.get_uid()]
+   
