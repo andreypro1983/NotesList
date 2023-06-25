@@ -14,5 +14,8 @@ class Note:
     def get_uid(self):
         return self.uid
 
-    def __str__(self) -> str:
+    def for_print(self) -> str:
         return f'{self.uid} {self.header} {self.body} {self.note_date}'
+
+   # def __str__(self) -> str:
+    #     return f'{self.uid} {self.header} {self.body} {self.note_date}'

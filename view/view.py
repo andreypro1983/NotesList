@@ -20,5 +20,7 @@ class View:
     def input_note(self) -> Tuple(str):
         return tuple([input(line) for line in self.text.input_note])
 
-    def print_note_add(self, txt: str):
-        print(self.text.add_note_success)
+    def print_message(self, txt: str):
+        print(txt)
+
+   

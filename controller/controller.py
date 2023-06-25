@@ -8,9 +8,11 @@ class Controller:
         self.service = service
         self.view = view
         self.text = text
+        self.is_work = True
 
     def start(self):
-        while True:
+        
+        while self.is_work:
             user_input = int(self.view.menu())
             match user_input:
                 case 1:
@@ -28,12 +30,19 @@ class Controller:
                 case 7:
                     pass
                 case 8:
-                    pass
+                    self.exit()
 
     def add(self):
-        print(self.view.input_note())
-        serv.add(*self.view.input_note())
-        self.view.print_note_add()
+        self.service.add(*self.view.input_note())
+        self.view.print_message(self.text.add_note_success)
 
     def show(self):
-        pass
+        notes = self.service.show()
+        if notes == '':
+            notes = self.text.empty_notes_list
+        self.view.print_message(notes)
+
+    def exit(self):
+        self.view.print_message(self.text.exit_message)
+        self.is_work = False
+
