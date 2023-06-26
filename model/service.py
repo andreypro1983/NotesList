@@ -10,6 +10,9 @@ class Service:
         new_note = note.Note(header, body)
         self.notes_list.add(new_note)
 
+    def edit(self, uid: int, header: str, body: str):
+        self.notes_list.edit(uid, header, body)    
+
     def find(self, uid: str) -> int:
         if self.notes_list.find(int(uid)):
             return int(uid)

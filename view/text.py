@@ -20,8 +20,11 @@ class Text:
         self.show_notes_list = '\nCписок заметок:'
         self.add_note = '\nДобавление заметки\n'
         self.remove_note = '\nУдаление заметки\n'
+        self.edit_note = '\nРедактирование заметки\n'
         self.input_uid_digit_error = '\nВведенное значение не является числом'
-        self.remote_note_successful = '\nЗаметка успешно удалена' 
+        self.remove_note_successful = '\nЗаметка успешно удалена'
+        self.edit_note_successful = '\nЗаметка успешно изменена'
+
 
     def input_uid_find_error(self, uid: int) -> str:
         return f'\nЗаметка с id = {(uid)} не найдена'

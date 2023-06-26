@@ -11,7 +11,7 @@ class Controller:
         self.is_work = True
 
     def start(self):
-        
+
         while self.is_work:
             user_input = int(self.view.menu())
             match user_input:
@@ -26,7 +26,7 @@ class Controller:
                 case 5:
                     pass
                 case 6:
-                    pass
+                    self.edit()
                 case 7:
                     self.remove()
                 case 8:
@@ -50,7 +50,15 @@ class Controller:
         else:
             self.view.print_message(self.text.input_uid_digit_error)
             return -1
-        
+
+    def edit(self):
+        self.view.print_message(self.text.edit_note.upper())
+        uid = self.find()
+        if uid != -1:
+            edit_info = self.view.input_note()
+            self.service.edit(uid, edit_info[0], edit_info[1])
+            self.view.print_message(self.text.edit_note_successful)
+
 
     def show(self):
         notes = self.service.show()
@@ -66,9 +74,6 @@ class Controller:
             self.service.remove(uid)
             self.view.print_message(self.text.remote_note_successful)
 
-
-
     def exit(self):
         self.view.print_message(self.text.exit_message.upper())
         self.is_work = False
-
