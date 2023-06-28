@@ -16,9 +16,9 @@ class Controller:
             user_input = int(self.view.menu())
             match user_input:
                 case 1:
-                    pass
+                    self.save()
                 case 2:
-                    pass
+                    self.load()
                 case 3:
                     self.add()
                 case 4:
@@ -37,6 +37,12 @@ class Controller:
         self.service.add(*self.view.input_note())
         self.view.print_message(self.text.add_note_successful)
 
+    def save(self):
+        self.service.save()
+
+    def load(self):
+        self.service.load()
+
     def find(self) -> int:
         input_uid = self.view.input_uid()
         if input_uid.isdigit():
@@ -46,7 +52,6 @@ class Controller:
             else:
                 self.view.print_message(self.text.input_uid_find_error(uid))
                 return -1
-
         else:
             self.view.print_message(self.text.input_uid_digit_error)
             return -1
@@ -58,7 +63,6 @@ class Controller:
             edit_info = self.view.input_note()
             self.service.edit(uid, edit_info[0], edit_info[1])
             self.view.print_message(self.text.edit_note_successful)
-
 
     def show(self):
         notes = self.service.show()
@@ -72,7 +76,7 @@ class Controller:
         uid = self.find()
         if uid != -1:
             self.service.remove(uid)
-            self.view.print_message(self.text.remote_note_successful)
+            self.view.print_message(self.text.remove_note_successful)
 
     def exit(self):
         self.view.print_message(self.text.exit_message.upper())

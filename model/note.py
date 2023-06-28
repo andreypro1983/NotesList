@@ -2,14 +2,12 @@ import datetime
 
 
 class Note:
-    count = 1
 
     def __init__(self, header: str, body: str):
+        self.uid = None
         self.header = header
         self.body = body
         self.note_date = datetime.datetime.now()
-        self.uid = Note.count
-        Note.count += 1
 
     def set_header(self, new_header: str):
         self.header = new_header
@@ -18,14 +16,16 @@ class Note:
         self.body = new_body
 
     def set_note_date_now(self):
-        self.note_date = datetime.datetime.now()    
+        self.note_date = datetime.datetime.now()
 
     def get_uid(self):
         return self.uid
 
+    def for_print_full(self) -> str:
+        return f'ID: {self.uid:>3}   ДАТА СОЗДАНИЯ/ИЗМЕНЕНИЯ: {self.note_date}   ЗАГОЛОВОК: {self.header}'
 
-    def for_print(self) -> str:
-        return f'id: {self.uid} Заголовок: {self.header} Тело заметки: {self.body} Дата создания/изменения: {self.note_date}'
+    def to_json(self):
+        return {'uid': self.uid, 'header': self.header, 'body': self.body, 'note_date': self.note_date.strftime("%Y-%m-%d %H:%M:%S.%f")}
 
-   # def __str__(self) -> str:
-    #     return f'{self.uid} {self.header} {self.body} {self.note_date}'
+    def __str__(self) -> str:
+        return f'"uid": {self.uid}, "header": {self.header}, "body": {self.body}, "note_date": {self.note_date}'

@@ -2,12 +2,15 @@ from . import note
 
 
 class NotesList:
-    def __init__(self, path: str = 'data.json'):
-        self.path = path
-        self.notes: dict[int:note.Note] = {}
+
+    def __init__(self):
+        self.notes = []
+        self.id = 1
 
     def add(self, add_note: note.Note):
-        self.notes[add_note.uid] = add_note
+        add_note.uid = self.id
+        self.id += 1
+        self.notes.append(add_note)
 
     def edit(self, uid: int, header: str, body: str):
         edit_note = self.notes[uid]
@@ -20,16 +23,32 @@ class NotesList:
     def show(self) -> str:
         string = ''
         if len(self.notes) > 0:
-            for value in self.notes.values():
-                string += f'{value.for_print()} \n'
+            for item in self.notes:
+                string += f'{item.for_print_full()} \n'
         return string
 
     def find(self, uid: int) -> bool:
-        if uid in self.notes:
-            return True
-        else:
-            return False
+        for item in self.notes:
+            if item.get_uid() == uid:
+                return True
+        return False
 
-    def remove(self, remove_note: note.Note):
-        if remove_note.get_uid() in self.notes:
-            del self.notes[remove_note.get_uid()]
+    def remove(self, uid: int):
+        for item in self.notes:
+            if item.get_uid() == uid:
+                self.notes.remove(item)
+
+    def max_uid(self) -> int:
+        max = 0
+        for item in self.notes:
+            if item.get_uid() > max:
+                max = item.get_uid()
+        return max
+
+    def get_notes(self):
+        return self.notes
+
+    def set_notes(self, data):
+        for item in data.values():
+            item['note_date']
+        print(data)
