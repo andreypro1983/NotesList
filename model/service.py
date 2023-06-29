@@ -14,18 +14,24 @@ class Service:
         self.notes_list.add(new_note)
 
     def load(self):
-        with open(self.path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            self.notes_list.notes = []
-            for item in data:
-                header = item['header']
-                body = item['body']
-                load_note = note.Note(header, body)
-                load_note.uid = item['uid']
-                load_note.note_date = datetime.datetime.strptime(
-                    item['note_date'], '%Y-%m-%d %H:%M:%S.%f')
-                self.notes_list.get_notes().append(load_note)
-            self.notes_list.id = self.notes_list.max_uid()+1
+        try:
+            with open(self.path, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                self.notes_list.notes = []
+                for item in data:
+                    header = item['header']
+                    body = item['body']
+                    load_note = note.Note(header, body)
+                    load_note.uid = item['uid']
+                    load_note.note_date = datetime.datetime.strptime(
+                        item['note_date'], '%Y-%m-%d %H:%M:%S.%f')
+                    self.notes_list.get_notes().append(load_note)
+                self.notes_list.id = self.notes_list.max_uid()+1
+        except FileNotFoundError:
+            print('\nФайл для загрузки не найден')
+        except Exception as e:
+            print('\n')
+            print(e)
 
     def save(self):
         data = []

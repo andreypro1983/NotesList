@@ -27,7 +27,7 @@ class Text:
 
 
     def input_uid_find_error(self, uid: int) -> str:
-        return f'\nЗаметка с id = {(uid)} не найдена'
+        return f'\nЗаметка с id = {(uid)} не найдена. Проверьте id заметки и повторите действие'
 
     def input_menu_error(self) -> str:
         return f'Введено недопустимое значение: выберите пункт от 1 до {len(self.textmenu)-1}'

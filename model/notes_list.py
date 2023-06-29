@@ -4,8 +4,8 @@ from . import note
 class NotesList:
 
     def __init__(self):
-        self.notes = []
-        self.id = 1
+        self.notes: list[note.Note] = []
+        self.id: int = 1
 
     def add(self, add_note: note.Note):
         add_note.uid = self.id
@@ -13,7 +13,7 @@ class NotesList:
         self.notes.append(add_note)
 
     def edit(self, uid: int, header: str, body: str):
-        edit_note = self.notes[uid]
+        edit_note = self.find_note_by_uid(uid)
         if header != '':
             edit_note.set_header(header)
         if body != '':
@@ -32,6 +32,12 @@ class NotesList:
             if item.get_uid() == uid:
                 return True
         return False
+    
+    def find_note_by_uid(self, uid: int) -> note.Note:
+        for item in self.notes:
+            if item.get_uid() == uid:
+                return item
+
 
     def remove(self, uid: int):
         for item in self.notes:

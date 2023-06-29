@@ -50,7 +50,7 @@ class Controller:
             if uid != -1:
                 return uid
             else:
-                self.view.print_message(self.text.input_uid_find_error(uid))
+                self.view.print_message(self.text.input_uid_find_error(input_uid))
                 return -1
         else:
             self.view.print_message(self.text.input_uid_digit_error)
@@ -63,12 +63,13 @@ class Controller:
             edit_info = self.view.input_note()
             self.service.edit(uid, edit_info[0], edit_info[1])
             self.view.print_message(self.text.edit_note_successful)
+            
 
     def show(self):
         notes = self.service.show()
         self.view.print_message(self.text.show_notes_list.upper())
         if notes == '':
-            notes = '\n' + self.text.empty_notes_list
+            notes = self.text.empty_notes_list
         self.view.print_message('\n' + notes)
 
     def remove(self):
