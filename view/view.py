@@ -19,14 +19,12 @@ class View:
 
     def input_note(self) -> Tuple(str):
         return tuple([input(line) for line in self.text.input_note])
-    
+
     def input_date(self) -> str:
         return input(self.text.input_date)
-    
+
     def input_uid(self) -> str:
         return input(self.text.input_uid)
 
     def print_message(self, txt: str):
         print(txt)
-
-   

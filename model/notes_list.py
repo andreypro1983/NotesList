@@ -21,7 +21,7 @@ class NotesList:
             edit_note.set_body(body)
         edit_note.set_note_date_now()
 
-    def show(self) -> str:
+    def show_all_notes(self) -> str:
         string = ''
         if len(self.notes) > 0:
             for item in self.notes:

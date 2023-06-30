@@ -31,14 +31,9 @@ class Text:
         self.remove_note_successful = '\nЗаметка успешно удалена'
         self.edit_note_successful = '\nЗаметка успешно изменена'
         self.notes_save_successful = '\nЗаметки успешно сохранены'
-        
-
- 
 
     def input_uid_find_error(self, uid: int) -> str:
         return f'\nЗаметка с id = {(uid)} не найдена. Проверьте id заметки и повторите действие'
 
     def input_menu_error(self) -> str:
         return f'Введено недопустимое значение: выберите пункт от 1 до {len(self.textmenu)-1}'
-    
-

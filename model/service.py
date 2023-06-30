@@ -41,8 +41,8 @@ class Service:
         with open(self.path, 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=4, ensure_ascii=False)
 
-    def edit(self, uid: int, header: str, body: str):
-        self.notes_list.edit(uid, header, body)
+    def edit(self, id: int, header: str, body: str):
+        self.notes_list.edit(id, header, body)
 
     def show_notes_by_date(self, input_date: str) -> str:
         if self.is_valid_date(input_date):
@@ -61,14 +61,14 @@ class Service:
         except ValueError:
             return False
 
-    def find(self, uid: str) -> int:
-        if self.notes_list.find(int(uid)):
-            return int(uid)
+    def find(self, id: str) -> int:
+        if self.notes_list.find(int(id)):
+            return int(id)
         else:
             return -1
 
-    def show(self) -> str:
-        return self.notes_list.show()
+    def show_all_notes(self) -> str:
+        return self.notes_list.show_all_notes()
 
-    def remove(self, uid: int):
-        self.notes_list.remove(uid)
+    def remove(self, id: int):
+        self.notes_list.remove(id)

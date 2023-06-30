@@ -11,7 +11,6 @@ class Controller:
         self.is_work = True
 
     def start(self):
-
         while self.is_work:
             user_input = int(self.view.menu())
             match user_input:
@@ -22,7 +21,7 @@ class Controller:
                 case 3:
                     self.add()
                 case 4:
-                    self.show()
+                    self.show_all_notes()
                 case 5:
                     self.show_notes_by_date()
                 case 6:
@@ -45,7 +44,6 @@ class Controller:
 
     def load(self):
         self.service.load()
-        
 
     def find(self) -> int:
         input_uid = self.view.input_uid()
@@ -83,8 +81,8 @@ class Controller:
             self.service.edit(uid, edit_info[0], edit_info[1])
             self.view.print_message(self.text.edit_note_successful)
 
-    def show(self):
-        notes = self.service.show()
+    def show_all_notes(self):
+        notes = self.service.show_all_notes()
         self.view.print_message(self.text.show_notes_list_short.upper())
         if notes == '':
             notes = self.text.empty_notes_list
