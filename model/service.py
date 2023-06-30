@@ -44,6 +44,23 @@ class Service:
     def edit(self, uid: int, header: str, body: str):
         self.notes_list.edit(uid, header, body)
 
+    def show_notes_by_date(self, input_date: str) -> str:
+        if self.is_valid_date(input_date):
+            # print(datetime.datetime.strptime(input_date, '%d-%m-%Y'))  # принт
+            return self.notes_list.show_notes_by_date(datetime.datetime.strptime(input_date, '%d-%m-%Y'))
+        else:
+            return '\nВведена некорректная дата'
+
+    def show_note_by_id(self, id: int) -> str:
+        return self.notes_list.show_note_by_id(id)
+
+    def is_valid_date(self, input_date: str) -> bool:
+        try:
+            datetime.datetime.strptime(input_date, '%d-%m-%Y')
+            return True
+        except ValueError:
+            return False
+
     def find(self, uid: str) -> int:
         if self.notes_list.find(int(uid)):
             return int(uid)

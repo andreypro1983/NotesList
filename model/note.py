@@ -21,11 +21,15 @@ class Note:
     def get_uid(self):
         return self.uid
 
+    def for_print_short(self) -> str:
+        return f'ID: {self.uid:>3}   ЗАГОЛОВОК: {self.header:<20}   ДАТА СОЗДАНИЯ/ИЗМЕНЕНИЯ: {self.note_date:%d-%m-%Y %H:%M%S}'
+    
     def for_print_full(self) -> str:
-        return f'ID: {self.uid:>3}   ДАТА СОЗДАНИЯ/ИЗМЕНЕНИЯ: {self.note_date}   ЗАГОЛОВОК: {self.header}'
+        return f'ID: {self.uid:>3}   ЗАГОЛОВОК: {self.header:<20}   ТЕЛО: {self.body}   ДАТА СОЗДАНИЯ/ИЗМЕНЕНИЯ: {self.note_date:%d-%m-%Y %H:%M%S}'
 
     def to_json(self):
         return {'uid': self.uid, 'header': self.header, 'body': self.body, 'note_date': self.note_date.strftime("%Y-%m-%d %H:%M:%S.%f")}
 
     def __str__(self) -> str:
-        return f'"uid": {self.uid}, "header": {self.header}, "body": {self.body}, "note_date": {self.note_date}'
+        return f'ID: {self.uid:>3}   ЗАГОЛОВОК: {self.header}   ТЕЛО: {self.body}   ДАТА СОЗДАНИЯ/ИЗМЕНЕНИЯ: {self.note_date:%d-%m-%Y %H:%M%S}'
+        # return f'"uid": {self.uid}, "header": {self.header}, "body": {self.body}, "note_date": {self.note_date}'

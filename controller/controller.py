@@ -24,12 +24,14 @@ class Controller:
                 case 4:
                     self.show()
                 case 5:
-                    pass
+                    self.show_notes_by_date()
                 case 6:
-                    self.edit()
+                    self.show_note_by_id()
                 case 7:
-                    self.remove()
+                    self.edit()
                 case 8:
+                    self.remove()
+                case 9:
                     self.exit()
 
     def add(self):
@@ -39,9 +41,11 @@ class Controller:
 
     def save(self):
         self.service.save()
+        self.view.print_message(self.text.notes_save_successful)
 
     def load(self):
         self.service.load()
+        
 
     def find(self) -> int:
         input_uid = self.view.input_uid()
@@ -50,11 +54,26 @@ class Controller:
             if uid != -1:
                 return uid
             else:
-                self.view.print_message(self.text.input_uid_find_error(input_uid))
+                self.view.print_message(
+                    self.text.input_uid_find_error(input_uid))
                 return -1
         else:
             self.view.print_message(self.text.input_uid_digit_error)
             return -1
+
+    def show_notes_by_date(self):
+        self.view.print_message(self.text.find_note_by_date.upper())
+        input_date = self.view.input_date()
+        self.view.print_message(self.text.show_notes_list.upper())
+        self.view.print_message(
+            '\n' + self.service.show_notes_by_date(input_date))
+
+    def show_note_by_id(self):
+        self.view.print_message(self.text.find_note_by_id.upper())
+        id = self.find()
+        if id != -1:
+            self.view.print_message(self.text.show_note_info.upper())
+            self.view.print_message(self.service.show_note_by_id(id))
 
     def edit(self):
         self.view.print_message(self.text.edit_note.upper())
@@ -63,11 +82,10 @@ class Controller:
             edit_info = self.view.input_note()
             self.service.edit(uid, edit_info[0], edit_info[1])
             self.view.print_message(self.text.edit_note_successful)
-            
 
     def show(self):
         notes = self.service.show()
-        self.view.print_message(self.text.show_notes_list.upper())
+        self.view.print_message(self.text.show_notes_list_short.upper())
         if notes == '':
             notes = self.text.empty_notes_list
         self.view.print_message('\n' + notes)
